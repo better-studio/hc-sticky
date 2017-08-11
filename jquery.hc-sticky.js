@@ -219,6 +219,9 @@
 
 				var $wrapper = (function(){ // wrapper exists
 						var $this_wrapper = $this.parent('.' + options.wrapperClassName);
+
+						$this.trigger('hcSticky-reinit', [$this,$this_wrapper,options])	
+
 						if ($this_wrapper.length > 0) {
 							$this_wrapper.css({
 								'height': $this.outerHeight(true),
@@ -684,7 +687,12 @@
 			} else if (typeof userOptions == 'string') {
 
 				return this.each(function(){
-					$(this).data(pluginName).commands[userOptions].call(this);
+
+					var commands = $(this).data(pluginName).commands;
+
+					if(commands && commands[userOptions]){
+					    commands[userOptions].call(this);
+					}				
 				});
 
 			} else {
