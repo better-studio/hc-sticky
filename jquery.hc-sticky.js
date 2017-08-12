@@ -140,7 +140,7 @@
 
 						// set current position
 						var top = $this.offset().top - $wrapper.offset().top;
-						$this.css({
+						$this.stop().css({
 							position: 'absolute',
 							top: top,
 							bottom: 'auto',
@@ -156,7 +156,7 @@
 							$wrapper = $this.parent('.' + options.wrapperClassName);
 
 						// clear position
-						$this.css({
+						$this.stop().css({
 							position: 'relative',
 							top: 'auto',
 							bottom: 'auto',
@@ -183,7 +183,7 @@
 						$wrapper = $this.parent('.' + options.wrapperClassName);
 
 					// reset position to original
-					$this.removeData('hcStickyInit').css({
+					$this.removeData('hcStickyInit').stop().css({
 						position: $wrapper.css('position'),
 						top: $wrapper.css('top'),
 						bottom: $wrapper.css('bottom'),
@@ -223,7 +223,7 @@
 						$this.trigger('hcSticky-reinit', [$this,$this_wrapper,options])	
 
 						if ($this_wrapper.length > 0) {
-							$this_wrapper.css({
+							$this_wrapper.stop().css({
 								'height': $this.outerHeight(true),
 								'width': (function(){
 									// check if wrapper already has width in %
@@ -251,7 +251,7 @@
 
 						var $this_wrapper = $('<div>', {
 							'class': options.wrapperClassName
-						}).css({
+						}).stop().css({
 							'display': display,
 							'height': $this.outerHeight(true),
 							'width': (function(){
@@ -311,7 +311,7 @@
 					: $wrapper.parent();
 
 				// clear sticky styles
-				$this.css({
+				$this.stop().css({
 					top: 'auto',
 					bottom: 'auto',
 					left: 'auto',
@@ -333,7 +333,7 @@
 
 						// apply styles
 						args = args || {};
-						$this.css({
+						$this.stop().css({
 							position: 'fixed',
 							top: args.top || 0,
 							left: args.left || $wrapper.offset().left
@@ -354,7 +354,7 @@
 						if ($this.css('position') != 'fixed' && parseInt($this.css('top')) == args.top) return;
 
 						// apply styles
-						$this.css({
+						$this.stop().css({
 							position: args.position,
 							top: args.top,
 							left: args.left
